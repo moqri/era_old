@@ -1,4 +1,2 @@
-./.git/objects/98/f1e38b5baff3074a040c41f217e0d606984cc6
-./.git/objects/97/a6528a0b01bc5ff9c550a45ffa54f587eef616
-./data/epic.csv.zip
-./data/rep.txt.gz
+data/epic.csv.zip
+data/rep.txt.gz
