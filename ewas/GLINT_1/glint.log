@@ -1,0 +1,5 @@
+2021-02-28 01:27:13,963 glint INFO      ewas.py:324                    Reading results from file results.glint.linreg.txt.
+2021-02-28 01:27:16,845 glint WARNING   generic.py:5245                /Users/jwakim/Documents/STEMREM205/project/GLINT_1/utils/common.py:85: FutureWarning: Method .as_matrix will be removed in a future version. Use .values instead.
+  return DataFrame.as_matrix(x)
+
+2021-02-28 01:27:19,747 glint INFO      plot.py:33                     Saving plot to results.glint.manhattan.png and results.glint.manhattan.eps
