@@ -1,12 +1,13 @@
-setwd("~/age/era/motfi")
+setwd("~/age/era/motif")
 library(MultiAssayExperiment)
 library(ELMER)
 library(gridExtra)
 library(dplyr)
-met <- read.csv("~/age/era/data/meth.csv", row.names=1)
+met <- read.csv("~/age/era/data/vein_meth.csv", row.names=1)
 
 exp <- read.csv("~/age/era/data/expf.csv", row.names=1)
-exp=exp[colnames(met)]
+#exp=exp[colnames(met)]
+colnames(exp)=colnames(met) # change
 
 assay <- c(rep("DNA methylation", ncol(met)),
            rep("Gene expression", ncol(exp)))
@@ -18,8 +19,8 @@ colname <- c(colnames(met),colnames(exp))
 sampleMap <- data.frame(assay,primary,colname)
 
 distal.probes <- get.feature.probe(genome = "hg38", 
-                                   met.platform = "EPIC")
-                                   #rm.chr = paste0("chr",c(1:21,"X","Y")))
+                                   met.platform = "EPIC",
+                                   rm.chr = paste0("chr",c("X","Y")))
 
 colData <- data.frame(sample = colnames(met))
 colnames(colData)='primary'
@@ -45,7 +46,7 @@ sig.diff <- get.diff.meth(data = mae,
               group1 =  "Treated",
               group2 = "Aged",
               minSubgroupFrac = 1, # if supervised mode set to 1
-              sig.dif = .4,
+              sig.dif = .3,
               diff.dir = "hypo", # hyper = Search for hypomethylated probes in group 1
               cores = 4, 
               dir.out ="result", 
@@ -56,7 +57,7 @@ enriched.motif <- get.enriched.motif(data = mae,
                                      dir.out = "result", 
                                      label = "hypo",
                                      min.incidence = 10,
-                                     lower.OR = 3)
+                                     lower.OR = 2)
 TF <- get.TFs(data = mae, 
               group.col = "Group",
               group1 =  "Treated",
